@@ -29,6 +29,7 @@ namespace DeliveryCalculator.Test
             var deliveryInvoice = costCalculator.CalulateDelivery(parcels);
 
             Assert.AreEqual(51, deliveryInvoice.TotalPrice);
+            Assert.AreEqual(102, deliveryInvoice.SpeedyTotalPrice);
 
             var deliveryItem_0 = deliveryInvoice.GetInvoiceItem(0);
             Assert.AreEqual(ParcelCategory.Small, deliveryItem_0.Category);
@@ -45,6 +46,8 @@ namespace DeliveryCalculator.Test
             var deliveryItem_3 = deliveryInvoice.GetInvoiceItem(3);
             Assert.AreEqual(ParcelCategory.XL, deliveryItem_3.Category);
             Assert.AreEqual(25, deliveryItem_3.Price);
+
+
         }
     }
 }

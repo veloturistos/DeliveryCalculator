@@ -10,6 +10,7 @@ namespace DeliveryCalculator.Library
     {
         private List<DeliveryItem> invoiceItems;
         private double totalPrice;
+        private double speedyTotalPrice;
         public DeliveryInvoice()
         {
             invoiceItems = new List<DeliveryItem>();
@@ -19,6 +20,12 @@ namespace DeliveryCalculator.Library
         {
             get { return totalPrice; }
             set { totalPrice = value; }
+        }
+
+        public double SpeedyTotalPrice
+        {
+            get { return speedyTotalPrice; }
+            set { speedyTotalPrice = value; }
         }
 
         public void AddInvoiceItem(DeliveryItem item)

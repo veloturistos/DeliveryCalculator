@@ -11,6 +11,7 @@ namespace DeliveryCalculator.Library
     {
         private readonly IParcelCostCalculator parcelCostCalculator;
         private readonly IParcelCategoryCalculator parcelCategoryCalculator;
+        private readonly int speedyMultiplier = 2;
 
         public DeliveryCalculator(IParcelCostCalculator parcelCostCalculator, IParcelCategoryCalculator parcelCategoryCalculator)
         {
@@ -34,6 +35,15 @@ namespace DeliveryCalculator.Library
             }
 
             deliveryInvoice.TotalPrice = total;
+
+            return deliveryInvoice;
+        }
+
+        public DeliveryInvoice CalulateDelivery(IEnumerable<Parcel> parcels, bool speedy)
+        {
+            DeliveryInvoice deliveryInvoice = CalulateDelivery(parcels);
+            if(speedy)
+                deliveryInvoice.SpeedyTotalPrice = deliveryInvoice.TotalPrice * speedyMultiplier ;
 
             return deliveryInvoice;
         }
