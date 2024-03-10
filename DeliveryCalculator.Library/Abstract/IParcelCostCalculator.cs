@@ -9,5 +9,7 @@ namespace DeliveryCalculator.Library.Abstract
     public interface IParcelCostCalculator
     {
         double CalculateCost(ParcelCategory category);
+
+        double CalculateCost(ParcelCategory category, Parcel parcel);
     }
 }

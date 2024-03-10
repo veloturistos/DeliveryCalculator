@@ -15,10 +15,10 @@ namespace DeliveryCalculator.Test
         [TestMethod]
         public void CalculateParcelSizeTest()
         {
-            var smallParcel = new Parcel(5, 6, 7);
-            var mediumParcel = new Parcel(15, 26, 37);
-            var largeParcel = new Parcel(55, 16, 7);
-            var xlParcel = new Parcel(123, 34, 56);
+            var smallParcel = new Parcel(5, 6, 7, 1);
+            var mediumParcel = new Parcel(15, 26, 37, 3);
+            var largeParcel = new Parcel(55, 16, 7, 6);
+            var xlParcel = new Parcel(123, 34, 56, 10);
 
             var calculator = new ParcelCategoryBySizeCalculator();
 

@@ -28,7 +28,7 @@ namespace DeliveryCalculator.Library
             foreach (var parcel in parcels)
             {
                 ParcelCategory category = parcelCategoryCalculator.CalculateCategory(parcel);
-                double price = parcelCostCalculator.CalculateCost(category);
+                double price = parcelCostCalculator.CalculateCost(category,parcel);
                 total += price;
                 DeliveryItem item = new DeliveryItem(category, price);
                 deliveryInvoice.AddInvoiceItem(item);
