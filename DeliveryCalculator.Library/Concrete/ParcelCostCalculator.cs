@@ -14,13 +14,16 @@ namespace DeliveryCalculator.Library.Concrete
         private readonly double mediumParcelCost = 8.0;
         private readonly double largeParcelCost = 15.0;
         private readonly double xlParcelCost = 25.0;
+        private readonly double heavyParcelCost = 50.0;
 
         private readonly double smallParcelWeight = 1.0;
         private readonly double mediumParcelWeight = 3.0;
         private readonly double largeParcelWeight = 6.0;
         private readonly double xlParcelWeight = 10.0;
+        private readonly double heavyParcelWeight = 50.0;
 
         private readonly double overweightPrice = 2.0;
+        private readonly double overweightHeavyPrice = 1.0;
 
 
         public double CalculateCost([NotNull] ParcelCategory category)
@@ -36,6 +39,8 @@ namespace DeliveryCalculator.Library.Concrete
                     return largeParcelCost;
                 case ParcelCategory.XL:
                     return xlParcelCost;
+                case ParcelCategory.Heavy:
+                    return heavyParcelCost;
                 default:
                     throw new NotSupportedException();
             }
@@ -58,6 +63,9 @@ namespace DeliveryCalculator.Library.Concrete
                     break;
                 case ParcelCategory.XL:
                     cost = parcel.Weight <= xlParcelWeight ? xlParcelCost : xlParcelCost + (parcel.Weight - xlParcelWeight) * overweightPrice;
+                    break;
+                case ParcelCategory.Heavy:
+                    cost = parcel.Weight <= heavyParcelWeight ? heavyParcelCost : heavyParcelCost + (parcel.Weight - heavyParcelWeight) * overweightHeavyPrice;
                     break;
                 default:
                     throw new NotSupportedException();

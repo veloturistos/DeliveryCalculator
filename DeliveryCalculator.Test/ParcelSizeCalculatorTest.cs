@@ -19,6 +19,7 @@ namespace DeliveryCalculator.Test
             var mediumParcel = new Parcel(15, 26, 37, 3);
             var largeParcel = new Parcel(55, 16, 7, 6);
             var xlParcel = new Parcel(123, 34, 56, 10);
+            var heavyParcel = new Parcel(123, 34, 56, 25);
 
             var calculator = new ParcelCategoryBySizeCalculator();
 
@@ -26,6 +27,7 @@ namespace DeliveryCalculator.Test
             Assert.AreEqual(ParcelCategory.Medium, calculator.CalculateCategory(mediumParcel));
             Assert.AreEqual(ParcelCategory.Large, calculator.CalculateCategory(largeParcel));
             Assert.AreEqual(ParcelCategory.XL, calculator.CalculateCategory(xlParcel));
+            Assert.AreEqual(ParcelCategory.Heavy, calculator.CalculateCategory(heavyParcel));
         }
     }
 }

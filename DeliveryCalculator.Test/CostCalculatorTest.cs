@@ -19,7 +19,8 @@ namespace DeliveryCalculator.Test
                 new Parcel(5, 6, 7, 1),
                 new Parcel(15, 26, 37, 3),
                 new Parcel(55, 16, 7, 6),
-                new Parcel(123, 34, 56, 10)               
+                new Parcel(123, 34, 56, 10),
+                new Parcel(123, 34, 56, 25),
             };
 
            
@@ -29,8 +30,8 @@ namespace DeliveryCalculator.Test
             var deliveryInvoice = costCalculator.CalulateDelivery(parcels);
             var deliverySpeedyInvoice = costCalculator.CalulateDelivery(parcels,true);
 
-            Assert.AreEqual(51, deliveryInvoice.TotalPrice);
-            Assert.AreEqual(102, deliverySpeedyInvoice.SpeedyTotalPrice);
+            Assert.AreEqual(101, deliveryInvoice.TotalPrice);
+            Assert.AreEqual(202, deliverySpeedyInvoice.SpeedyTotalPrice);
 
             var deliveryItem_0 = deliveryInvoice.GetInvoiceItem(0);
             Assert.AreEqual(ParcelCategory.Small, deliveryItem_0.Category);
@@ -48,19 +49,24 @@ namespace DeliveryCalculator.Test
             Assert.AreEqual(ParcelCategory.XL, deliveryItem_3.Category);
             Assert.AreEqual(25, deliveryItem_3.Price);
 
+            var deliveryItem_4 = deliveryInvoice.GetInvoiceItem(4);
+            Assert.AreEqual(ParcelCategory.Heavy, deliveryItem_4.Category);
+            Assert.AreEqual(50, deliveryItem_4.Price);
+
             var overweightParcels = new List<Parcel>
             {
                 new Parcel(5, 6, 7, 3),
                 new Parcel(15, 26, 37, 5),
                 new Parcel(55, 16, 7, 8),
-                new Parcel(123, 34, 56, 12)
+                new Parcel(123, 34, 56, 12),
+                new Parcel(123, 34, 56, 52)
             };
 
             var deliveryWeightInvoice = costCalculator.CalulateDelivery(overweightParcels);
             var deliveryWeightSpeedyInvoice = costCalculator.CalulateDelivery(overweightParcels, true);
 
-            Assert.AreEqual(67, deliveryWeightInvoice.TotalPrice);
-            Assert.AreEqual(134, deliveryWeightSpeedyInvoice.SpeedyTotalPrice);
+            Assert.AreEqual(119, deliveryWeightInvoice.TotalPrice);
+            Assert.AreEqual(238, deliveryWeightSpeedyInvoice.SpeedyTotalPrice);
 
             var deliveryWeightItem_0 = deliveryWeightInvoice.GetInvoiceItem(0);
             Assert.AreEqual(ParcelCategory.Small, deliveryWeightItem_0.Category);
@@ -77,6 +83,10 @@ namespace DeliveryCalculator.Test
             var deliveryWeightItem_3 = deliveryWeightInvoice.GetInvoiceItem(3);
             Assert.AreEqual(ParcelCategory.XL, deliveryWeightItem_3.Category);
             Assert.AreEqual(29, deliveryWeightItem_3.Price);
+
+            var deliveryWeightItem_4 = deliveryWeightInvoice.GetInvoiceItem(4);
+            Assert.AreEqual(ParcelCategory.Heavy, deliveryWeightItem_4.Category);
+            Assert.AreEqual(52, deliveryWeightItem_4.Price);
         }
     }
 }

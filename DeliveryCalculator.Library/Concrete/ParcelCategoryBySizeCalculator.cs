@@ -12,11 +12,15 @@ namespace DeliveryCalculator.Library.Concrete
         private readonly double smallParcel = 10.0;
         private readonly double mediumParcel = 50.0;
         private readonly double largeParcel = 100.0;
+        private readonly double heavyMinParcel = 23.0; // need to clarify 
 
         public ParcelCategory CalculateCategory(Parcel parcel)
         {
             if (parcel is null)
                 throw new ArgumentNullException(nameof(parcel));
+
+            if (parcel.Weight >= heavyMinParcel)
+                return ParcelCategory.Heavy;
 
             if (parcel.Width < smallParcel && parcel.Length < smallParcel && parcel.Height < smallParcel)
                 return ParcelCategory.Small;
